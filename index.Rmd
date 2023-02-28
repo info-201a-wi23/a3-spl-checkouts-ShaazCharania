@@ -5,82 +5,50 @@ output: html_document
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+**The data I am analyzing in this report is from the Seattle Public Library (SPL), and it shows the amount checkouts by title for physical and electronic items, tracking back from 2005. However, the data set I am looking at only shows checked-out items from 2022 to 2023. The trends I am analyzing in this data set are the number of paper books purchased vs. the number of e-books purchased each month, the number of checkouts per month of Rick Riordan vs. Dr. Seuss's books, and the total checkouts per month. I want to analyze these trends because E-Books have increased for years, and I want to know how popular they are compared to paper books. I also want to know the monthly checkouts to see if a specific month affects people's wanting to read. I want to see how many Dr. Seuss and Rick Riordan books were checked out because they are both my favorite authors..**
+
 
 ### Summary Information
-
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+``````{r, echo = FALSE, warning = FALSE, message = FALSE, code = readLines("summary.R")}
+``````
+**For the summary of this analysis, I focused on several different categories. First, I wanted to find out which month had the highest total checkouts in 2022 because I wanted to see which month is the most active at the Seattle Public Library. After filtering the data, I discovered that `r highest_checkout_month` had the highest number of checkouts in 2022. Since I found out the month with the highest total checkouts, I wanted to find out which month had the lowest number. After filtering through the data, I discovered that the month of `r lowest_checkout_month` had the lowest total checkouts. Then I wanted to find out which month had the highest amount of e-books checked out. After filtering through the data, I discovered that `r Month_highest_ebook_checkouts` had the highest number of e-book checkouts. After exploring the basic information, I wanted to analyze one of my favorite childhood authors, Dr. Seuss. I wanted to know which month had the highest amount of Dr. Seuss checkouts and what that number was. After filtering through the data, I found out that the month of `r Month_highest_dr_seuss` had the highest amount of Dr. Seuss checkouts; and the most active month incurred `r Highest_number_of_dr_seuss_books` total checkouts.**
 
 ### The Dataset
 
-- Who collected/published the data?  
+- Who collected/published the data?
+**The SPL collected and published this data. However, David Christensen (lead analyst at SPL) and George Legrady (Creator of "Making Visible and Invisible" installation) played a big role in the collection of the data**
 - What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
+**Some of the parameters of this data is that it measure the number of checkouts between 2022-2023; however I focused on 2022 in this data analysis because it only included January of 2023, and I thought that wasn't significant. There are a number of medium formats in this data set, which are paper books, e-books, sound discs, video discs, audio books, songs, videocassette, and music. However, the most popular medium types are paper books and e-books**
+- How was the data collected or generated?
+**From 2005 till 2017, nobody in the SPL was collecting data around Checkout Titles. However, a discovery was made that someone else was collecting data during that time period, and it was on an art piece. The art installation "Making Visible the Invisible" by George Legrady has 6 LCD screen that showed a real-time data visualization about things being checked out and returned. Once they noticed that art installation has 10 years worth of data, they starting mining it. After the data mining was completed, they recovered 10 years worth of data.**
 - Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
+**This data was collected because Barack Obama signed an executive order that all federal government data had to be public. Lots of public libraries were contributing to this open data initiative, but SPL data was very extensive compared to others. Also, in response to the new executive order, the city of Seattle began the Open Data Initiative which made all city departments to make their data public in order to promote transparency, public collaboration and civic problem-solving.**
+- What, if any, ethical questions do you need to consider when working with this data?
+**An ethical question I have for this data is since they got most of their data from the art installation, did the artist allow data analysts from SPL to extensively mine his art piece? Overall, this data does not seem it's breaking any ethical rules, considering they created this data in order to promote transparency of city departments.**
 - What are possible limitations or problems with this data?   (at least 200 words)
-
+**Some problem I have already found within this data is that it needs to be more organized and organized. For instance, I looked through the data to see which books had the highest checkouts, and the highest checkouts were just headphones. The SPL would have filtered out this data because the data is supposed to be about books and films. Some more irrelevant information shown in this data is the "SPL Hotspot," which also has nothing to do with the intent of this data. These irrelevant titles carry significant checkout numbers in this data, creating more problems for people who want to analyze the database for just book titles. Also, the genre column of this data needs to be more specific, making it hard to filter out which books are fiction or non-fiction when each book has 4 to 5 different types of fiction. Overall, filtering the data will be a challenge when there's a lot of irrelevant data.**
+- How many observations (rows) are in your data? 
+**There 2757014 observations in this data set**
+-How many features (columns) are in the data? 
+**There are 13 features in this data set**
 
 ### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+``````{r, echo = FALSE, message = FALSE, warning = FALSE, code = readLines("Book_vs_Ebook_Checkout.R")}
+``````
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
-```
+**I included this chart because I wanted to see if the comparison of checking out paper books versus electronic books changed each month. A line plot was the best way to show these two variables because it could visualize the frequency change. For the most part, paper books are checked out more than electronic books. However, July and December are the only months when electronic books are checked out more than paper books. Christmas may have had a big part in the purchase of electronic books.**
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+`````{r, echo = FALSE, message = FALSE, warning = FALSE, code = readLines("Rick_Riordan_Checkouts.R")}
+`````
 
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
-```
+**I included this chart because I wanted to compare the checkouts of children's books and teenage/adult books. For context, Rick Riordan is a famous author behind the Percy Jackson series. The Percy Jackson series is super popular, but so is Dr. Seuss, so the checkout should be close. But Dr. Seuss's books have drastically lower checkouts than Rick Riordan's texts. I wouldn't have expected this to happen because children's books are prominent in libraries. A line plot was good for this comparison because you can see the drastic difference between the checkouts, and it shows the frequency of the checkouts in each month.**
 
 ### Your Choice
+``````{r, echo = FALSE, message = FALSE, warning = FALSE, code = readLines("total-checkouts-graph.R")}
+``````
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
-```
-
+**I chose to create this bar graph because I was curious if there were any drastic differences in monthly checkout numbers. But after making the bar graph, the checkouts stayed between 650K and 750K. There were changes every month, but nothing noticeable. I think a bar graph was good to use for this case because the visualization shows the leveled the data is.**
 
